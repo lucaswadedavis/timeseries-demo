@@ -7,7 +7,7 @@
   };
 
 
-  var extractPropertyByDay = function(day, prop){
+  var extractPropertyByDay = function(data,day, prop){
     return [day].concat([_.reduce(data,function(m,n){
             return n['day.of.week']===day ? m+(parseFloat(n[prop]) || 0) : m;
           }, 0)] );
@@ -63,7 +63,7 @@ app.displayDonut = function(data){
       bindto:"#dayofweek-donut-chart",
       data:{
         columns:_.map(["sunday","monday","tuesday","wednesday","thursday","friday","saturday"],function(day){
-          return extractPropertyByDay(day,"car.count");
+          return extractPropertyByDay(data,day,"car.count");
         }),
         type:"donut"
       },
