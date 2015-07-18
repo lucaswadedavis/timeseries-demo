@@ -3,7 +3,6 @@
   var app = {};
 
   app.displayChart(data){
-
     var chart = c3.generate({
       bindto: "#timeseries-chart",
         data: {
