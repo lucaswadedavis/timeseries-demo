@@ -1,8 +1,15 @@
 (function(){
 
+  var cleanData = function(data){
+    return  _.filter(data,function(obj){
+      return obj.date && obj['car.count'] !== undefined && obj.weather && obj['day.of.week'];
+    };
+  };
+
   var app = {};
 
   app.displayChart = function(data){
+    var data = cleanData(data);
     var chart = c3.generate({
       bindto: "#timeseries-chart",
         data: {
