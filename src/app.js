@@ -4,7 +4,7 @@
 
   app.init = function(){
 
-    var url = "src/FrontEnd-TestData.csv";
+    var url = "src/data.csv";
     var opts = {
       download:true,
       complete:function(results,file){
