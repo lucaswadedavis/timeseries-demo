@@ -3,7 +3,7 @@
   var cleanData = function(data){
     return  _.filter(data,function(obj){
       return obj.date && obj['car.count'] !== undefined && obj.weather && obj['day.of.week'];
-    };
+    });
   };
 
   var app = {};
