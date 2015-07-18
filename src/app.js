@@ -12,6 +12,7 @@
     var data = cleanData(data);
     var chart = c3.generate({
       bindto: "#timeseries-chart",
+      zoom: {enabled:true},
         data: {
           x: 'x',
         //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
