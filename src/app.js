@@ -68,7 +68,7 @@ app.displayDonut = function(data){
         type:"donut"
       },
       donut:{
-        title:"car counts"
+        title:"cars per day"
       }
     });
 };
