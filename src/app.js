@@ -18,9 +18,6 @@
         columns: [
         ['x'].concat(_.pluck(data,'date') ),
         ['weather'].concat(_.pluck(data,'weather') )
-        //['data1', 30, 200, 100, 400, 150, 250],
-
-        //['data2', 130, 340, 200, 500, 250, 350]
       ]
         },
         axis: {
@@ -33,6 +30,7 @@
         }
     });
 
+/*
     setTimeout(function () {
       chart.load({
         columns: [
@@ -40,6 +38,8 @@
         ]
       });
     }, 1000);
+*/  
+    
   };
 
 
