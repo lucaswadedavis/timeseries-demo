@@ -2,20 +2,7 @@
 
   var app = {};
 
-  app.init = function(){
-
-    var url = "src/FrontEnd-TestData.csv";
-    var opts = {
-      download:true,
-      complete:function(results,file){
-        console.log(results);
-      },
-      error:function(err,file){
-        console.log(err);
-      }
-    };
-
-    Papa.parse(url,opts);
+  app.displayChart(data){
 
     var chart = c3.generate({
       bindto: "#timeseries-chart",
@@ -48,7 +35,28 @@
     }, 1000);
   };
 
-  window.app = app;
+
+};
+
+app.init = function(){
+
+  var url = "src/data.csv";
+  var opts = {
+    download:true,
+    header:true,
+    complete:function(results,file){
+      console.log(results);
+      app.displayChart(results.data);
+    },
+    error:function(err,file){
+      console.log(err);
+    }
+  };
+
+  Papa.parse(url,opts);
+};
+
+window.app = app;
 
 })();
 
