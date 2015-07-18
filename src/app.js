@@ -56,12 +56,16 @@ app.displayDonut = function(data){
       bindto:"#dayofweek-donut-chart",
       data:{
         columns:[
-          ['monday'].concat(_.filter(data,function(obj){
-            return obj['day.of.week']==='monday';     
-          }) ),
-          ['friday'].concat(_.filter(data,function(obj){
-            return obj['day.of.week']==='friday';
-          }) )
+          ['monday'].push(_.reduce(data,function(m,n){
+            return n['day.of.week']==='monday' ? m+(parseFloat(n['car.count'] || 0) : m;
+          }, 0) ),
+            ['tuesday'].push(_.reduce(data,function(m,n){
+            return n['day.of.week']==='tuesday' ? m+(parseFloat(n['car.count'] || 0) : m;
+          }, 0) ),
+          ['friday'].push(_.reduce(data,function(m,n){
+            return n['day.of.week']==='friday' ? m+(parseFloat(n['car.count'] || 0) : m;
+          }, 0) )
+
         ],
         type:"donut"
       },
