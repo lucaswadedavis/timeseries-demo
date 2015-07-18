@@ -80,7 +80,7 @@ app.displayDonut = function(data){
       header:true,
       complete:function(results,file){
         console.log(results);
-        app.data = app.cleanData(results.data);
+        app.data = cleanData(results.data);
         app.displayChart(app.data);
         app.displayDonut(app.data);
       },
