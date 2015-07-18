@@ -2,7 +2,7 @@
 
   var app = {};
 
-  app.displayChart(data){
+  app.displayChart = function(data){
     var chart = c3.generate({
       bindto: "#timeseries-chart",
         data: {
@@ -35,27 +35,25 @@
   };
 
 
-};
+  app.init = function(){
 
-app.init = function(){
+    var url = "./src/data.csv";
+    var opts = {
+      download:true,
+      header:true,
+      complete:function(results,file){
+        console.log(results);
+        app.displayChart(results.data);
+      },
+      error:function(err,file){
+        console.log(err);
+      }
+    };
 
-  var url = "src/data.csv";
-  var opts = {
-    download:true,
-    header:true,
-    complete:function(results,file){
-      console.log(results);
-      app.displayChart(results.data);
-    },
-    error:function(err,file){
-      console.log(err);
-    }
+    Papa.parse(url,opts);
   };
 
-  Papa.parse(url,opts);
-};
-
-window.app = app;
+  window.app = app;
 
 })();
 
