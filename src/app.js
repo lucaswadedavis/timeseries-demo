@@ -9,8 +9,8 @@
 
   var extractPropertyByDay = function(data,day, prop){
     return [day].concat([_.reduce(data,function(m,n){
-            return n['day.of.week']===day ? m+(parseFloat(n[prop]) || 0) : m;
-          }, 0)] );
+      return n['day.of.week']===day ? m+(parseFloat(n[prop]) || 0) : m;
+    }, 0)] );
   };
 
   var app = {};
@@ -18,18 +18,17 @@
   app.displayChart = function(data){
     var chart = c3.generate({
       bindto: "#timeseries-chart",
-      subchart:{show:true},
+        subchart:{show:true},
         data: {
           x: 'x',
-        //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
         columns: [
-        ['x'].concat(_.pluck(data,'date') ),
+      ['x'].concat(_.pluck(data,'date') ),
         ['weather'].concat(_.pluck(data,'weather') ),
         ['car.count'].concat(_.pluck(data,'car.count') )
-        ],
+      ],
         axes:{
           weather:"y",
-          'car.count':"y2"
+        'car.count':"y2"
         }
         },
         axis: {
@@ -39,39 +38,30 @@
           format: '%Y-%m-%d'
         }
           },
-        y:{label:"weather"},
-        y2:{show:true, label:"car count"}
+          y:{label:"weather"},
+          y2:{show:true, label:"car count"}
         }
     });
 
-/*
-    setTimeout(function () {
-      chart.load({
-        columns: [
-        ['data3', 400, 500, 450, 700, 600, 500]
-        ]
-      });
-    }, 1000);
-*/  
-    
+
   };
 
-app.displayDonut = function(data){
-  
+  app.displayDonut = function(data){
+
 
     var chart = c3.generate({
       bindto:"#dayofweek-donut-chart",
-      data:{
-        columns:_.map(["sunday","monday","tuesday","wednesday","thursday","friday","saturday"],function(day){
-          return extractPropertyByDay(data,day,"car.count");
-        }),
-        type:"donut"
-      },
-      donut:{
-        title:"cars per day"
-      }
+        data:{
+          columns:_.map(["sunday","monday","tuesday","wednesday","thursday","friday","saturday"],function(day){
+            return extractPropertyByDay(data,day,"car.count");
+          }),
+          type:"donut"
+        },
+        donut:{
+          title:"cars per day"
+        }
     });
-};
+  };
 
 
   app.init = function(){
