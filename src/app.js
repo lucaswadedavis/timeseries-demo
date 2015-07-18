@@ -18,8 +18,13 @@
         //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
         columns: [
         ['x'].concat(_.pluck(data,'date') ),
-        ['weather'].concat(_.pluck(data,'weather') )
-      ]
+        ['weather'].concat(_.pluck(data,'weather') ),
+        ['car.count'].concat(_.pluck(data['car.count']) )
+        ],
+        axes:{
+          weather:"y",
+          'car.count':"y2"
+        }
         },
         axis: {
           x: {
@@ -27,7 +32,9 @@
         tick: {
           format: '%Y-%m-%d'
         }
-          }
+          },
+        y:{label:"weather"},
+        y2:{label:"car count"}
         }
     });
 
