@@ -12,7 +12,7 @@
     var data = cleanData(data);
     var chart = c3.generate({
       bindto: "#timeseries-chart",
-      zoom: {enabled:true},
+      subchart:{show:true},
         data: {
           x: 'x',
         //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
@@ -34,7 +34,7 @@
         }
           },
         y:{label:"weather"},
-        y2:{label:"car count"}
+        y2:{show:true, label:"car count"}
         }
     });
 
