@@ -6,6 +6,13 @@
     });
   };
 
+
+  var extractPropertyByDay = function(day, prop){
+    return [day].concat([_.reduce(data,function(m,n){
+            return n['day.of.week']===day ? m+(parseFloat(n[prop]) || 0) : m;
+          }, 0)] );
+  };
+
   var app = {};
 
   app.displayChart = function(data){
@@ -55,18 +62,9 @@ app.displayDonut = function(data){
     var chart = c3.generate({
       bindto:"#dayofweek-donut-chart",
       data:{
-        columns:[
-          ['monday'].concat([_.reduce(data,function(m,n){
-            return n['day.of.week']==='monday' ? m+(parseFloat(n['car.count']) || 0) : m;
-          }, 0)] ),
-            ['tuesday'].concat([_.reduce(data,function(m,n){
-            return n['day.of.week']==='tuesday' ? m+(parseFloat(n['car.count']) || 0) : m;
-          }, 0) ]),
-          ['friday'].concat([_.reduce(data,function(m,n){
-            return n['day.of.week']==='friday' ? m+(parseFloat(n['car.count']) || 0) : m;
-          }, 0) ])
-
-        ],
+        columns:_.map(["sunday","monday","tuesday","wednesday","thursday","friday","saturday"],function(day){
+          return extractPropertyByDay(day,"car.count");
+        }),
         type:"donut"
       },
       donut:{
