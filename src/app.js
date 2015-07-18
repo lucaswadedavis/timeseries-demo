@@ -57,13 +57,13 @@ app.displayDonut = function(data){
       data:{
         columns:[
           ['monday'].push(_.reduce(data,function(m,n){
-            return n['day.of.week']==='monday' ? m+(parseFloat(n['car.count'] || 0) : m;
+            return n['day.of.week']==='monday' ? m+(parseFloat(n['car.count']) || 0) : m;
           }, 0) ),
             ['tuesday'].push(_.reduce(data,function(m,n){
-            return n['day.of.week']==='tuesday' ? m+(parseFloat(n['car.count'] || 0) : m;
+            return n['day.of.week']==='tuesday' ? m+(parseFloat(n['car.count']) || 0) : m;
           }, 0) ),
           ['friday'].push(_.reduce(data,function(m,n){
-            return n['day.of.week']==='friday' ? m+(parseFloat(n['car.count'] || 0) : m;
+            return n['day.of.week']==='friday' ? m+(parseFloat(n['car.count']) || 0) : m;
           }, 0) )
 
         ],
