@@ -9,7 +9,6 @@
   var app = {};
 
   app.displayChart = function(data){
-    var data = cleanData(data);
     var chart = c3.generate({
       bindto: "#timeseries-chart",
       subchart:{show:true},
@@ -50,6 +49,28 @@
     
   };
 
+app.displayDonut = function(data){
+  
+
+    var chart = c3.generate({
+      bindto:"#dayofweek-donut-chart",
+      data:{
+        columns:[
+          ['monday'].concat(_.filter(data,function(obj){
+            return obj['day.of.week']==='monday';     
+          }) ),
+          ['friday'].concat(_.filter(data,function(obj){
+            return obj['day.of.week']==='friday';
+          }) )
+        ],
+        type:"donut"
+      },
+      donut:{
+        title:"car counts"
+      }
+    });
+};
+
 
   app.init = function(){
 
@@ -59,7 +80,9 @@
       header:true,
       complete:function(results,file){
         console.log(results);
-        app.displayChart(results.data);
+        app.data = app.cleanData(results.data);
+        app.displayChart(app.data);
+        app.displayDonut(app.data);
       },
       error:function(err,file){
         console.log(err);
